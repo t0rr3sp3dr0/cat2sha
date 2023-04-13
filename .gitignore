@@ -16,3 +16,6 @@ vendor/
 
 # GoReleaser
 dist/
+
+# go build
+cat2sha
