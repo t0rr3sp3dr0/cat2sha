@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"reflect"
+	"strings"
 
 	"golang.org/x/text/encoding/unicode"
 )
@@ -180,10 +181,11 @@ func main() {
 			continue
 		}
 
-		name, err := utf16Decoder.Bytes(cnv.Value)
+		utf8, err := utf16Decoder.Bytes(cnv.Value)
 		if err != nil {
 			log.Panic(err)
 		}
+		name := strings.TrimSuffix(string(utf8), "\x00")
 
 		hash := hex.EncodeToString(sid.MessageDigest.Digest)
 
